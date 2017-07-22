@@ -5,7 +5,7 @@ class CreateRecordings < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.string :data, null: false 
       t.string :description 
-      t.string :words_learned
+      t.text :words_learned, array: true, default: []
 
       t.timestamps
     end

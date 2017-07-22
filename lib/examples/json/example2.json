@@ -290,6 +290,10 @@
      "start_time": 10.77,
      "alternatives": [
       {
+       "confidence": 0.9109,
+       "word": "beginning"
+      },
+      {
        "confidence": 0.0584,
        "word": "beginnings"
       }
@@ -3355,7 +3359,7 @@
      "alternatives": [
       {
        "confidence": 0.9608,
-       "word": "fddsfdds"
+       "word": "beginning"
       }
      ],
      "end_time": 69.13
@@ -4422,7 +4426,7 @@
      "alternatives": [
       {
        "confidence": 0.9874,
-       "word": "fafdsfdsf"
+       "word": "so"
       }
      ],
      "end_time": 87.02
@@ -4548,7 +4552,7 @@
      "alternatives": [
       {
        "confidence": 0.9392,
-       "word": "fdafdsfaf"
+       "word": "right"
       },
       {
        "confidence": 0.0601,
@@ -5566,7 +5570,7 @@
      "alternatives": [
       {
        "confidence": 0.9395,
-       "word": "ffdfasdfafd"
+       "word": "right"
       }
      ],
      "end_time": 103.86
@@ -6411,7 +6415,7 @@
      "alternatives": [
       {
        "confidence": 0.8379,
-       "word": "fafdfafdsfdsfs"
+       "word": "right"
       },
       {
        "confidence": 0.091,

@@ -22,13 +22,13 @@ module Api
         
         def create
           @recording = Recording.new(recording_params)
+          @recording.user = current_user
           
-          file = File.read('lib/examples/json/example1.json')  
+          file = File.read('lib/examples/json/example2.json')  
           @recording.data = file
           
-          @recording.add_words_learned
+          @recording.add_words_learned(0.8, 1)
           
-          @recording.user = current_user
           authorize @recording
           if @recording.save
             render :show, status: :created

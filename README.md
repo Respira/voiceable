@@ -32,7 +32,7 @@ curl -i -X PATCH                                           \
 curl -i -X POST                                                              \
     -H 'Content-Type: application/json'                                      \
     -H 'X-User-Email: testing@email.com'                                    \
-    -H 'X-User-Token: x1yKVEycrzCRfw_WCDzH'                                  \
+    -H 'X-User-Token: yK1CtSNEH34kEmXVfbmg'                                  \
     -d '{ "recording": { "data": "Some Jason as string", "description": "Whatever" } }' \
     http://localhost:3000/api/respira/v1/recordings
 ```
