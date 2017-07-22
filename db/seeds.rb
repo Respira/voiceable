@@ -7,9 +7,21 @@ User.create!({
   admin: true
   })
   
-2.times do
+file = File.read('lib/examples/json/example1.json')
+
+1.times do
   Recording.create!({
-    data: "some json",
+    data: file,
+    description: Faker::ChuckNorris.fact,
+    user: User.first
+    })
+end 
+
+file = File.read('lib/examples/json/example2.json')
+
+1.times do
+  Recording.create!({
+    data: file,
     description: Faker::ChuckNorris.fact,
     user: User.first
     })
