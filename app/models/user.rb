@@ -12,6 +12,14 @@ class User < ApplicationRecord
          
   validates :email, email_format: { message: "doesn't look like an email address" }, presence: true
   
+  def words_known_by_user
+    words = []
+    Recording.where(user: self).each do |recording|
+      words << recording.words_learned
+    end 
+    words
+  end 
+  
 end
 
 
