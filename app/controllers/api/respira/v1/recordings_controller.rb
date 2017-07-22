@@ -23,10 +23,10 @@ module Api
         def create
           @recording = Recording.new(recording_params)
           
-          file = File.read('lib/examples/json/example1.json')
-          # data_hash = JSON.parse(file)
-          
+          file = File.read('lib/examples/json/example1.json')  
           @recording.data = file
+          
+          @recording.add_words_learned
           
           @recording.user = current_user
           authorize @recording
