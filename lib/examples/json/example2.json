@@ -499,7 +499,7 @@
      "alternatives": [
       {
        "confidence": 0.9717,
-       "word": "could"
+       "word": "right"
       },
       {
        "confidence": 0.0241,
@@ -523,7 +523,7 @@
      "alternatives": [
       {
        "confidence": 0.9994,
-       "word": "help"
+       "word": "right"
       }
      ],
      "end_time": 14.51
@@ -543,7 +543,7 @@
      "alternatives": [
       {
        "confidence": 0.9999,
-       "word": "with"
+       "word": "right"
       }
      ],
      "end_time": 14.76
@@ -779,7 +779,7 @@
      "alternatives": [
       {
        "confidence": 0.9617,
-       "word": "help"
+       "word": "right"
       },
       {
        "confidence": 0.0169,

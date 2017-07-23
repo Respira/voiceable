@@ -6,34 +6,26 @@ class Recording < ApplicationRecord
   validates :user, presence: true
   validates :data, presence: true
   
-  def add_words_learned(confidence, speaker)
+  def add_new_words(confidence, speaker)
     
     total_words_known = self.user.words_known_by_user
-    new_words_learned = []
+    new_words = []
     
     self.words_with_confidence(confidence, speaker).each do |word_with_confidence|
       word_known = false
-      if total_words_known[0]
-        # while total_words_known[0][i] != word_with_confidence do
-        #   word_known = total_words_known[0][i]
-        #   i += 1
-        # end
-        
-        total_words_known[0].each do |known_word|
+      if total_words_known.any?      
+        total_words_known.each do |known_word|
           word_known = true if known_word == word_with_confidence
+          # next if word_known
         end
-        # if total_words_known[0][i] != word_with_confidence
-        #   new_words_learned << word_with_confidence
-        # end 
-         
       end 
       
-    unless word_known
-      new_words_learned << word_with_confidence
-    end
-      
+      unless word_known
+        new_words << word_with_confidence
+      end
     end 
-    self.words_learned = new_words_learned.uniq
+    binding.pry
+    self.learning_words = new_words
   end 
   
   def words_with_confidence(confidence, speaker)

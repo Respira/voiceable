@@ -27,7 +27,7 @@ module Api
           file = File.read('lib/examples/json/example2.json')  
           @recording.data = file
           
-          @recording.add_words_learned(0.8, 1)
+          @recording.add_new_words(0.8, 1)
           
           authorize @recording
           if @recording.save

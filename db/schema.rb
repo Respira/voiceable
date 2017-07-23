@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20170526181120) do
 
   create_table "recordings", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "data",                       null: false
+    t.string   "data",                        null: false
     t.string   "description"
-    t.text     "words_learned", default: [],              array: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.text     "learning_words", default: [],              array: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["user_id"], name: "index_recordings_on_user_id", using: :btree
   end
 
