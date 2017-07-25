@@ -13,7 +13,9 @@ file = File.read('lib/examples/json/example1.json')
   Recording.create!({
     data: file,
     description: Faker::ChuckNorris.fact,
-    user: User.first
+    user: User.first,
+    confidence: 80,
+    speaker: 1
     })
 end 
 
@@ -23,6 +25,8 @@ file = File.read('lib/examples/json/example2.json')
   Recording.create!({
     data: file,
     description: Faker::ChuckNorris.fact,
-    user: User.first
+    user: User.first,
+    confidence: 80,
+    speaker:1
     })
 end 

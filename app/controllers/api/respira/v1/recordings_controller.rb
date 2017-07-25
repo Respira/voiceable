@@ -27,7 +27,7 @@ module Api
           file = File.read('lib/examples/json/example2.json')  
           @recording.data = file
           
-          @recording.add_new_words(0.8, 1)
+          @recording.add_new_words
           
           authorize @recording
           if @recording.save
@@ -45,7 +45,7 @@ module Api
         end
 
         def recording_params
-          params.require(:recording).permit(:data, :description)
+          params.require(:recording).permit(:data, :description, :confidence, :speaker)
         end
 
         def render_error

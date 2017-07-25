@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20170526181120) do
     t.integer  "user_id"
     t.string   "data",                        null: false
     t.string   "description"
+    t.integer  "confidence",     default: 80, null: false
+    t.integer  "speaker",                     null: false
     t.text     "learning_words", default: [],              array: true
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
