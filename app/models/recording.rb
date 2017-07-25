@@ -16,7 +16,6 @@ class Recording < ApplicationRecord
       if total_words_known.any?      
         total_words_known.each do |known_word|
           word_known = true if known_word == word_with_confidence
-          # next if word_known
         end
       end 
       
@@ -24,7 +23,6 @@ class Recording < ApplicationRecord
         new_words << word_with_confidence
       end
     end 
-    binding.pry
     self.learning_words = new_words
   end 
   
@@ -38,15 +36,15 @@ class Recording < ApplicationRecord
     data = JSON.parse(self.data)
     words = []
     data['results'].each do |sentence|
-      sentence["word_alternatives"].each do |word|
-        word['alternatives'].each do |word_options|
-          if word_options["confidence"] > confidence
-            # w = word_options["word"]
-            # c = word_options["confidence"]
-            words << word_options["word"]
+      if sentence['speaker'] == speaker
+        sentence["word_alternatives"].each do |word|
+          word['alternatives'].each do |word_options|
+            if word_options["confidence"] > confidence
+              words << word_options["word"]
+            end 
           end 
         end 
-      end 
+      end
     end
     words
   end
