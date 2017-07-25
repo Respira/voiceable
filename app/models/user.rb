@@ -11,6 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
          
   validates :email, email_format: { message: "doesn't look like an email address" }, presence: true
+  validates :name, presence: true 
   
   def words_known_by_user
     words_arrays = []

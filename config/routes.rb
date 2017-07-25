@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  root to: 'user/index', as: :root
-  get 'user/dashboard', as: :dashboard
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
     
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  
+  resources  :users, only: %i(index show)
+  
+  root to: 'users#index', as: :root
   
   namespace :api, defaults: { format: :json } do
     namespace :respira do
