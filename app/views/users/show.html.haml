@@ -1,2 +1,44 @@
-%h1 students name
-= @user.name
+%h1 
+  = "Student" 
+  = @user.name.capitalize
+%ul#selector
+  %li 
+    %h3
+      = "email:" 
+      = @user.email
+  %li 
+    %h3
+      = "words known:" 
+      = @recordings.size
+  %li
+    %h3
+      = "words in the process to be learnt (less than 3 times said):" 
+      = @recordings.size
+  %li
+    %h3
+      = "number of recordings:" 
+      = @recordings.size
+  %li
+    %h3
+      = "words known:" 
+    %p
+      = @recordings.size
+- @recordings.each do |recording|
+  %h2
+    = "Recording" 
+    = recording.id
+  %ul#selector
+    %li 
+      %p date:
+    %li 
+      %p confidence:
+    %li 
+      %p speaker:
+    %li 
+      %p new words or learning words:
+    %li 
+      %p words learned in this recording:
+      
+      
+%br
+= link_to "back", users_path
