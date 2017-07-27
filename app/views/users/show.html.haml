@@ -11,19 +11,18 @@
       %h3
         = "words known:" 
         = @user.words_known_by_user.size
+      %p
+        = @user.words_known_by_user
     %li
       %h3
         = "words in the process to be learnt (less than 3 times said):" 
         = @user.learning_words_by_user.size
+      %p
+        = @user.learning_words_by_user
     %li
       %h3
         = "number of recordings:" 
         = @recordings.size
-    %li
-      %h3
-        = "words known:" 
-      %p
-        = @user.words_known_by_user
   - @recordings.each do |recording|
     %h2
       = "Recording" 
@@ -33,10 +32,16 @@
         %p 
           = "date:"
           = recording.created_at
+      - if recording.description.present?
+        %li 
+          %p 
+            = "description:"
+            = recording.description
       %li 
         %p 
           = "confidence:"
           = recording.confidence
+          = "%"
       %li 
         %p 
           = "speaker:"

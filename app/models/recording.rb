@@ -1,12 +1,22 @@
 class Recording < ApplicationRecord
   belongs_to :user
   
+  mount_uploader :file, RecordUploader
+  
   # serialize :data, JSON
   
   validates :user, presence: true
-  validates :data, presence: true
   validates :confidence, presence: true
   validates :speaker, presence: true
+  
+  before_validation :read_json_file_and_add_new_words
+  
+  def read_json_file_and_add_new_words
+    if self.file.present?
+      self.data = File.read(self.file.current_path) 
+      self.add_new_words
+    end
+  end 
   
   def add_new_words
     
@@ -41,7 +51,7 @@ class Recording < ApplicationRecord
       if sentence['speaker'] == self.speaker
         sentence["word_alternatives"].each do |word|
           word['alternatives'].each do |word_options|
-            if word_options["confidence"] > (self.confidence)/100
+            if word_options["confidence"] > (self.confidence.to_f)/100
               words << word_options["word"]
             end 
           end 
