@@ -6,6 +6,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
-    @recordings = Recording.all
+    @recordings = Recording.where(user: @user)
   end
 end

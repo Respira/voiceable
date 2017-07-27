@@ -1,44 +1,54 @@
 %h1 
   = "Student" 
   = @user.name.capitalize
-%ul#selector
-  %li 
-    %h3
-      = "email:" 
-      = @user.email
-  %li 
-    %h3
-      = "words known:" 
-      = @recordings.size
-  %li
-    %h3
-      = "words in the process to be learnt (less than 3 times said):" 
-      = @recordings.size
-  %li
-    %h3
-      = "number of recordings:" 
-      = @recordings.size
-  %li
-    %h3
-      = "words known:" 
-    %p
-      = @recordings.size
-- @recordings.each do |recording|
-  %h2
-    = "Recording" 
-    = recording.id
+- if @recordings.any?
   %ul#selector
     %li 
-      %p date:
+      %h3
+        = "email:" 
+        = @user.email
     %li 
-      %p confidence:
-    %li 
-      %p speaker:
-    %li 
-      %p new words or learning words:
-    %li 
-      %p words learned in this recording:
-      
+      %h3
+        = "words known:" 
+        = @user.words_known_by_user.size
+    %li
+      %h3
+        = "words in the process to be learnt (less than 3 times said):" 
+        = @user.learning_words_by_user.size
+    %li
+      %h3
+        = "number of recordings:" 
+        = @recordings.size
+    %li
+      %h3
+        = "words known:" 
+      %p
+        = @user.words_known_by_user
+  - @recordings.each do |recording|
+    %h2
+      = "Recording" 
+      = recording.id
+    %ul#selector
+      %li 
+        %p 
+          = "date:"
+          = recording.created_at
+      %li 
+        %p 
+          = "confidence:"
+          = recording.confidence
+      %li 
+        %p 
+          = "speaker:"
+          = recording.speaker
+      %li 
+        %p 
+          = 'new words or learning words on this recording:'
+        = recording.learning_words
+- else
+  %h3 
+    = @user.name.capitalize
+    = "does not have recordings"        
       
 %br
 = link_to "back", users_path

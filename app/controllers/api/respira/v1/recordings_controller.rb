@@ -24,7 +24,7 @@ module Api
           @recording = Recording.new(recording_params)
           @recording.user = current_user
           
-          file = File.read('lib/examples/json/example2.json')  
+          file = File.read('lib/examples/json/example1.json')  
           @recording.data = file
           
           @recording.add_new_words
