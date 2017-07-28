@@ -27,6 +27,9 @@
     %h2
       = "Recording" 
       = recording.id
+    %br
+      %p
+        = link_to "Destroy Recording", api_respira_v1_recording_path(recording), method: :delete, data: { confirm: 'Are you sure?' }
     %ul#selector
       %li 
         %p 

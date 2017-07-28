@@ -17,4 +17,8 @@ class RecordingPolicy < ApplicationPolicy
     record.user == user
   end
   
+  def destroy?
+    true
+  end 
+  
 end

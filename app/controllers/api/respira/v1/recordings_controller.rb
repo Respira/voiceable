@@ -3,7 +3,7 @@ module Api
     module V1
       class RecordingsController < Api::Respira::V1::BaseController
         acts_as_token_authentication_handler_for User, except: %i[index show]
-        before_action :set_recording, only: %i[show update]
+        before_action :set_recording, only: %i[show update destroy]
         
         def index
           @recordings = policy_scope(Recording)
@@ -36,6 +36,12 @@ module Api
             render_error
           end
         end
+        
+        def destroy
+          if @recording.destroy
+            redirect_to user_path(@recording.user)
+          end 
+        end 
 
         private
 
