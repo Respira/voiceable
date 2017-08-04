@@ -2,7 +2,7 @@ User.destroy_all
 Recording.destroy_all
 
 User.create!({
-  email: "jordi@voiceable.io",
+  email: "admin@voiceable.io",
   password: "password10",
   name: 'jordi',
   admin: true
