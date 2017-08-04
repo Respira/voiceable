@@ -28,6 +28,6 @@ file = File.read('lib/examples/json/example2.json')
     description: Faker::ChuckNorris.fact,
     user: User.first,
     confidence: 80,
-    speaker:1
+    speaker: 1
     })
 end 

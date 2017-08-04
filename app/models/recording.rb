@@ -51,7 +51,7 @@ class Recording < ApplicationRecord
       if sentence['speaker'] == self.speaker
         sentence["word_alternatives"].each do |word|
           word['alternatives'].each do |word_options|
-            if word_options["confidence"] > (self.confidence.to_f)/100
+            if word_options["confidence"] > (self.confidence.to_f) / 100
               words << word_options["word"]
             end 
           end 

@@ -32,7 +32,7 @@ class User < ApplicationRecord
       words << recording.learning_words
     end 
     # the words that you are learning = total number new words but and no dublicated - the words that you already know.  
-    learning_words = (words.uniq.flatten - words_known_by_user)
+    words.uniq.flatten - words_known_by_user
   end 
   
 end
