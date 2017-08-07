@@ -3,7 +3,7 @@ module Api
     module V1
       class RecordingsController < Api::Respira::V1::BaseController
         acts_as_token_authentication_handler_for User, except: %i[index show]
-        before_action :set_recording, only: %i[show update]
+        before_action :set_recording, only: %i[show update destroy]
         
         def index
           @recordings = policy_scope(Recording)
@@ -23,6 +23,12 @@ module Api
         def create
           @recording = Recording.new(recording_params)
           @recording.user = current_user
+          
+          file = File.read('lib/examples/json/example1.json')  
+          @recording.data = file
+          
+          @recording.add_new_words
+          
           authorize @recording
           if @recording.save
             render :show, status: :created
@@ -30,6 +36,12 @@ module Api
             render_error
           end
         end
+        
+        def destroy
+          if @recording.destroy
+            redirect_to user_path(@recording.user)
+          end 
+        end 
 
         private
 
@@ -39,7 +51,7 @@ module Api
         end
 
         def recording_params
-          params.require(:recording).permit(:data, :description)
+          params.require(:recording).permit(:data, :description, :confidence, :speaker)
         end
 
         def render_error

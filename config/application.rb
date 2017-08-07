@@ -10,6 +10,8 @@ require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'action_cable/engine'
 require 'sprockets/railtie'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -74,11 +76,6 @@ module Voiceable
     config.assets.precompile += Ckeditor.assets
     config.assets.precompile += %w[ckeditor/*]
     config.autoload_paths += %W[#{config.root}/app/models/ckeditor]
-
-    config.to_prepare do
-      Devise::SessionsController.layout "minimal"
-      Devise::RegistrationsController.layout (proc{ |controller| user_signed_in? ? "application" : "minimal" })
-    end
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

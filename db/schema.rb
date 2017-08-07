@@ -10,17 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526181120) do
+ActiveRecord::Schema.define(version: 20170727171247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "recordings", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "data",        null: false
-    t.string   "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "data",                        null: false
+    t.string   "description"
+    t.integer  "confidence",     default: 80, null: false
+    t.integer  "speaker",                     null: false
+    t.text     "learning_words", default: [],              array: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "file"
     t.index ["user_id"], name: "index_recordings_on_user_id", using: :btree
   end
 
@@ -47,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170526181120) do
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.boolean  "admin",                             default: false, null: false
+    t.string   "name",                                              null: false
     t.string   "authentication_token",   limit: 30
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
