@@ -7,6 +7,7 @@ tmp/*
 .DS_Store
 public/assets
 coverage
+API-IBM
 
 # Ignore Byebug command history file.
 .byebug_history
