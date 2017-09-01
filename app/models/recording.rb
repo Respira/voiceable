@@ -18,6 +18,11 @@ class Recording < ApplicationRecord
     end
   end 
   
+  def select_first_speaker
+    data = JSON.parse(self.data)
+    data['results'][1]['speaker']
+  end 
+  
   def add_new_words
     
     total_words_known = self.user.words_known_by_user
