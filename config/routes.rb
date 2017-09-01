@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
   
-  resources  :users, only: %i(index show)
+  resources  :users, only: %i(index show) do 
+    collection do 
+      get "respond_json" 
+    end 
+  end 
   
   root to: 'users#index', as: :root
   

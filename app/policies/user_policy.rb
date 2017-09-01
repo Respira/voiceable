@@ -7,5 +7,9 @@ class UserPolicy < ApplicationPolicy
   
   def main?
     record == user
-  end 
+  end
+  
+  def respond_json?
+    user
+  end  
 end
