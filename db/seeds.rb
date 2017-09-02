@@ -8,7 +8,7 @@ User.create!({
   admin: true
   })
   
-file = File.read('lib/examples/json/example1.json')
+file = File.read('spec/lib/audio-file.flac')
 
 1.times do
   Recording.create!({
@@ -16,7 +16,6 @@ file = File.read('lib/examples/json/example1.json')
     description: Faker::ChuckNorris.fact,
     user: User.first,
     confidence: 80,
-    speaker: 1
     })
 end 
 
@@ -28,6 +27,5 @@ file = File.read('lib/examples/json/example2.json')
     description: Faker::ChuckNorris.fact,
     user: User.first,
     confidence: 80,
-    speaker: 1
     })
 end 

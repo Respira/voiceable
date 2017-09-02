@@ -1,4 +1,7 @@
 class Recording < ApplicationRecord
+  
+  require 'rest-client'
+  
   belongs_to :user
   
   mount_uploader :file, RecordUploader
@@ -7,15 +10,33 @@ class Recording < ApplicationRecord
   
   validates :user, presence: true
   validates :confidence, presence: true
-  validates :speaker, presence: true
   
   before_validation :read_json_file_and_add_new_words
+  before_validation :select_first_speaker
   
   def read_json_file_and_add_new_words
     if self.file.present?
-      self.data = File.read(self.file.current_path) 
+
+      response = RestClient::Request.execute(
+         :method => :post,
+         :url => "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?model=en-US_NarrowbandModel&speaker_labels=true",
+         :payload => File.read(self.file.current_path),
+         :user => ENV['USERNAME_IBM'],
+         :password => ENV['PASSWORD_IBM'],
+         :headers => { content_type: 'audio/mp3' }
+       )
+      
+      self.data = response
+      
+      # self.data = RestClient.post url, file, { content_type: 'audio/flac', :Authorization => "Token #{ENV['TOKEN_STEAMA']}"}
+      # self.data = File.read(self.file.current_path) Requied to read data from the file 
       self.add_new_words
     end
+  end 
+  
+  def select_first_speaker
+    data = JSON.parse(self.data)
+    self.speaker = data['results'][1]['speaker'].to_i
   end 
   
   def add_new_words
