@@ -16,16 +16,14 @@ class Recording < ApplicationRecord
   
   def read_json_file_and_add_new_words
     if self.file.present?
-      
-      url = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?model=en-US_NarrowbandModel&speaker_labels=true"
-      
+
       response = RestClient::Request.execute(
          :method => :post,
          :url => "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?model=en-US_NarrowbandModel&speaker_labels=true",
          :payload => File.read(self.file.current_path),
          :user => ENV['USERNAME_IBM'],
          :password => ENV['PASSWORD_IBM'],
-         :headers => { content_type: 'audio/flac' }
+         :headers => { content_type: 'audio/mp3' }
        )
       
       self.data = response
