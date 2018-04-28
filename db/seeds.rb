@@ -7,7 +7,7 @@ User.create!({
   name: 'jordi',
   admin: true
   })
-  
+
 file = File.read('lib/examples/json/example1.json')
 
 1.times do
@@ -18,7 +18,7 @@ file = File.read('lib/examples/json/example1.json')
     confidence: 80,
     speaker: 1
     })
-end 
+end
 
 file = File.read('lib/examples/json/example2.json')
 
@@ -30,4 +30,4 @@ file = File.read('lib/examples/json/example2.json')
     confidence: 80,
     speaker: 1
     })
-end 
+end
