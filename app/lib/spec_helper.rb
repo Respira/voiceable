@@ -35,7 +35,7 @@ module SpecHelpers
   end
 
   def self.any_image
-    Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'blank.jpg'))
+    Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'blank.jpg'))
   end
 
   def any_image

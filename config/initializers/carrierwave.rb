@@ -15,11 +15,11 @@ if Rails.env.in?(%w(test development))
       storage :file
 
       def cache_dir
-        "#{Rails.root}/public/uploads/#{Rails.env}/tmp"
+        Rails.root.join 'public', 'uploads', Rails.env, 'tmp'
       end
 
       def store_dir
-        "#{Rails.root}/public/uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+        Rails.root.join 'public', 'uploads', Rails.env, model.class.to_s.underscore, mounted_as, model.id
       end
     end
   end
