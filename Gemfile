@@ -62,7 +62,7 @@ end
 group :staging, :development, :test do
   gem 'awesome_print'
   gem 'better_errors'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '4.7.0'
   gem 'faker', '~> 1.7'
   gem 'pry-nav'
   gem 'pry-rails'
