@@ -13,7 +13,7 @@ if (RSpec.configuration.instance_variable_get :@files_or_directories_to_run) == 
   end
 end
 
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
@@ -50,7 +50,7 @@ RSpec.configure do |config|
   config.include ActionView::Helpers::TranslationHelper
   config.include Warden::Test::Helpers, type: :feature
   config.infer_spec_type_from_file_location!
-  config.render_views  
+  config.render_views
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.use_transactional_fixtures = false
 
@@ -65,17 +65,17 @@ RSpec.configure do |config|
     DatabaseCleaner.start
     Warden.test_mode!
   end
-  
+
   config.before(:each, :js) do
     page.driver.browser.manage.window.resize_to(1920, 1200)
   end
-  
+
   config.after(:each) do |example|
     assert_js_ok if example.metadata[:js] && !example.metadata[:skip_js_check]
     DatabaseCleaner.clean
     Warden.test_reset!
   end
-  
+
   config.around :each, :js do |ex|
     ex.run_with_retry retry: (ci? ? 3 : 2), retry_wait: 3
   end
